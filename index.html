@@ -7,31 +7,28 @@
 <style>
   :root { --gold: #FFD700; --orange: #FF8C00; --red: #D32F2F; --app-blue: #3131FF; }
   body { margin: 0; background: #f0f2f5; font-family: sans-serif; display: flex; justify-content: center; }
-  .container { background: linear-gradient(135deg, var(--gold), var(--orange)); padding: 15px; border-radius: 24px; width: 90%; max-width: 360px; margin: 15px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: all 0.8s ease; position: relative; overflow: hidden; }
+  .container { background: linear-gradient(135deg, var(--gold), var(--orange)); padding: 15px; border-radius: 24px; width: 90%; max-width: 360px; margin: 15px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); position: relative; overflow: hidden; transition: all 0.8s ease; }
   .all-completed { background: linear-gradient(45deg, #FFD700, #FF8C00, #FF0080, #7928CA); background-size: 300% 300%; animation: shine 3s linear infinite; transform: scale(1.02); box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
   @keyframes shine { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
   #date { font-size: 0.9rem; font-weight: bold; color: #fff; margin-bottom: 8px; display: block; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-  h2 { font-size: 1.45rem; font-weight: 950; margin: 5px -15px 18px; color: var(--red); text-shadow: 2px 2px 0px #fff, 3px 3px 6px rgba(0,0,0,0.3); line-height: 1.2; letter-spacing: -0.02em; white-space: nowrap; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.22) 15%, rgba(255,255,255,0.22) 85%, rgba(255,255,255,0) 100%); padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+  h2 { font-size: 1.45rem; font-weight: 950; margin: 5px -15px 18px; color: var(--red); text-shadow: 2px 2px 0px #fff, 3px 3px 6px rgba(0,0,0,0.3); padding: 10px 0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.22) 15%, rgba(255,255,255,0.22) 85%, rgba(255,255,255,0) 100%); }
   .accordion { margin-right: -15px; margin-bottom: 8px; }
-  .section-title { font-size: 1rem; font-weight: bold; color: #fff; margin: 22px 0 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); text-align: left; padding: 6px 12px; background: linear-gradient(90deg, rgba(211, 47, 47, 0.45) 0%, rgba(211, 47, 47, 0) 90%); border-radius: 6px 0 0 6px; line-height: 1.3; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+  .section-title { font-size: 1rem; font-weight: bold; color: #fff; margin: 22px 0 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); text-align: left; padding: 6px 12px; background: linear-gradient(90deg, rgba(211, 47, 47, 0.45) 0%, rgba(211, 47, 47, 0) 90%); border-radius: 6px 0 0 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
   .section-title > div:first-child { flex: 1; min-width: 0; padding-right: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .toggle-icon { font-size: 0.75rem; background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 12px; margin-right: 15px; font-weight: bold; white-space: nowrap; }
-  .section-subtitle { display: block; font-size: 0.75rem; opacity: 0.85; font-weight: normal; margin-bottom: 1px; }
+  .toggle-icon { font-size: 0.75rem; background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 12px; flex-shrink: 0; }
+  .section-subtitle { display: block; font-size: 0.75rem; opacity: 0.85; font-weight: normal; }
   .accordion-content { display: none; padding-right: 15px; }
-  .item { background: #fff; display: flex; align-items: center; padding: 12px 15px; border-radius: 15px; margin-bottom: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+  .item { background: #fff; display: flex; align-items: center; padding: 12px 15px; border-radius: 15px; margin-bottom: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); text-align: left; }
   .item.is-completed { opacity: 0.4; transform: scale(0.95); background: #f8f8f8; }
-  .item span { font-size: 0.95rem; color: #333; font-weight: bold; flex-grow: 1; text-align: left; line-height: 1.3; display: flex; flex-direction: column; justify-content: center; }
-  .app-tag { color: var(--app-blue); font-size: 0.75rem; display: block; margin-bottom: 2px; font-weight: bold; }
-  .note { font-size: 11px !important; color: #888 !important; font-weight: normal !important; display: block; margin-top: 4px; }
+  .item span { font-size: 0.95rem; color: #333; font-weight: bold; flex-grow: 1; display: flex; flex-direction: column; }
+  .app-tag { color: var(--app-blue); font-size: 0.75rem; font-weight: bold; }
+  .note { font-size: 11px; color: #888; font-weight: normal; margin-top: 4px; }
   input[type="checkbox"] { width: 26px; height: 26px; margin-right: 12px; accent-color: var(--orange); flex-shrink: 0; }
-  
-  /* 💡 こだわりのフッター修正 */
-  .footer { margin-top: 25px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; line-height: 1.5; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+  .footer { margin-top: 25px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
   .f-row { display: flex; align-items: flex-start; margin-top: 3px; }
   .f-icon { width: 1.4em; flex-shrink: 0; }
   .f-text { flex: 1; }
-  
-  .popup-reward { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 2.2rem; background: rgba(255, 255, 255, 0.95); padding: 15px 25px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 9999; pointer-events: none; opacity: 0; white-space: nowrap; }
+  .popup-reward { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 2.2rem; background: rgba(255, 255, 255, 0.95); padding: 15px 25px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 9999; pointer-events: none; opacity: 0; }
   .popup-reward.show { animation: pop-up 1.8s ease-out forwards; }
   @keyframes pop-up { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; } 15% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } 100% { opacity: 0; } }
 </style>
@@ -42,7 +39,7 @@
   <span id="date"></span>
   <h2 id="title">投票アイテムをあつめよう！</h2>
   <div id="list">
-    <div class="section-title" style="cursor: default;"><div>コツコツ応援！きょうの推しごと<small>⏱️ 有効期限：180日 〜 年内期限</small></div></div>
+    <div class="section-title" style="cursor: default;"><div>コツコツ応援！きょうの推しごと<small style="display:block;font-size:0.68rem;opacity:0.9;font-weight:normal;">⏱️ 有効期限：180日 〜 年内期限</small></div></div>
     <div class="always-content">
       <label class="item"><input type="checkbox" id="t1" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>出席後広告視聴❤️</span></label>
       <label class="item"><input type="checkbox" id="t2" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>ルーレット❤️</span></label>
@@ -50,8 +47,27 @@
       <label class="item"><input type="checkbox" id="t4" class="cb cb-top"><span><small class="app-tag">LiNC</small>広告視聴💜 [３０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
       <label class="item"><input type="checkbox" id="t5" class="cb cb-top"><span><small class="app-tag">tin</small>広告視聴💜 [２０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
     </div>
+    <div class="accordion">
+      <div class="section-title" onclick="toggleSection('sec-honboshi', this)"><div><span class="section-subtitle">そろそろ本腰…</span>上乗せ！の推しごと<small style="display:block;font-size:0.68rem;opacity:0.9;font-weight:normal;">⏱️ 60日〜90日</small></div><span class="toggle-icon">🔽 広げる</span></div>
+      <div id="sec-honboshi" class="accordion-content">
+        <label class="item"><input type="checkbox" id="t6" class="cb cb-mid"><span><small class="app-tag">mubeat</small>広告視聴💗 [１５回]<span class="note">※１回ごとに１０秒インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t7" class="cb cb-mid"><span><small class="app-tag">mubeat</small>クイズに挑戦💗<span class="note">※１日１回は無料</span></span></label>
+        <label class="item"><input type="checkbox" id="t8" class="cb cb-mid"><span><small class="app-tag">MUNIVERSE</small>広告視聴🟦 [２０回]<span class="note">※１回ごとに１分程度インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t9" class="cb cb-mid"><span><small class="app-tag">Higher</small>出席+広告視聴ボーナス🔴</span></label>
+        <label class="item"><input type="checkbox" id="t10" class="cb cb-mid"><span><small class="app-tag">Higher</small>ルーレット🔴 [３回]</span></label>
+        <label class="item"><input type="checkbox" id="t11" class="cb cb-mid"><span><small class="app-tag">Higher</small>はしご乗り🔴 [３回]</span></label>
+        <label class="item"><input type="checkbox" id="t12" class="cb cb-mid"><span><small class="app-tag">Higher</small>広告視聴🔴 [５０回]<span class="note">※１０回ごとに５分インターバル</span></span></label>
+      </div>
     </div>
-
+    <div class="accordion">
+      <div class="section-title" onclick="toggleSection('sec-kessen', this)"><div><span class="section-subtitle">決戦せまる！</span>限界突破🔥の推しごと<small style="display:block;font-size:0.68rem;opacity:0.9;font-weight:normal;">⏱️ 30日以内</small></div><span class="toggle-icon">🔽 広げる</span></div>
+      <div id="sec-kessen" class="accordion-content">
+        <label class="item"><input type="checkbox" id="t13" class="cb"><span><small class="app-tag">Fancast</small>チェックイン💙</span></label>
+        <label class="item"><input type="checkbox" id="t14" class="cb"><span><small class="app-tag">Fancast</small>広告視聴💙 [視聴ボタン３つ×２０回]<span class="note">※１回ごとに１０分インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t15" class="cb"><span><small class="app-tag">MUNIVERSE</small>出席⬜</span></label>
+      </div>
+    </div>
+  </div>
   <div class="footer">
     <b>💡 有効期限 一覧表</b>
     <div class="f-row"><span class="f-icon">・</span><span class="f-text">IDOL CHAMP ➔ 💙月末まで</span></div>
@@ -64,7 +80,6 @@
   </div>
 </div>
 <script>
-// (スクリプト部分は以前のままです)
 function toggleSection(id, element) { const content = document.getElementById(id); const icon = element.querySelector('.toggle-icon'); if (content.style.display === 'block') { content.style.display = 'none'; icon.innerText = '🔽 広げる'; } else { content.style.display = 'block'; icon.innerText = '🔼 閉じる'; } }
 (() => { const K_DATA = 'V_LIGHT_ST_V11', K_DATE = 'V_LIGHT_DT_V11', K_HALF = 'V_LIGHT_HF_V11', K_MID_HALF = 'V_LIGHT_MH_V11'; const cbs = document.querySelectorAll('.cb'), box = document.getElementById('box'), title = document.getElementById('title'), rewardBox = document.getElementById('rewardBox'); const showEmojiReward = (text) => { rewardBox.innerText = text; rewardBox.classList.remove('show'); void rewardBox.offsetWidth; rewardBox.classList.add('show'); }; const update = (fire) => { let ok = 0, topOk = 0, midOk = 0; const topCbs = document.querySelectorAll('.cb-top'), midCbs = document.querySelectorAll('.cb-mid'); cbs.forEach(c => { const p = c.closest('.item'); if(c.checked) { ok++; p.classList.add('is-completed'); if(c.classList.contains('cb-top')) topOk++; if(c.classList.contains('cb-mid')) midOk++; } else { p.classList.remove('is-completed'); } }); if(ok === cbs.length) { box.classList.add('all-completed'); title.innerHTML = "✨ COMPLETE ✨ おつかれさま！"; } else { box.classList.remove('all-completed'); title.innerHTML = "投票アイテムをあつめよう！"; } if (fire && ok !== cbs.length) { if (topOk === topCbs.length && localStorage.getItem(K_HALF) !== '1') { localStorage.setItem(K_HALF, '1'); showEmojiReward('🎉 👏 ✨'); } if (midOk === midCbs.length && localStorage.getItem(K_MID_HALF) !== '1') { localStorage.setItem(K_MID_HALF, '1'); showEmojiReward('🎙 🕺 🔥'); } } if (topOk < topCbs.length) localStorage.removeItem(K_HALF); if (midOk < midCbs.length) localStorage.removeItem(K_MID_HALF); }; const save = () => { const d = {}; cbs.forEach(c => d[c.id] = c.checked); localStorage.setItem(K_DATA, JSON.stringify(d)); const now = new Date(); localStorage.setItem(K_DATE, now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()); }; const load = () => { const n = new Date(), today = n.getFullYear()+'-'+(n.getMonth()+1)+'-'+n.getDate(); document.getElementById('date').innerText = today.replace(/-/g, '/'); if(localStorage.getItem(K_DATE) !== today) { localStorage.removeItem(K_DATA); localStorage.removeItem(K_HALF); localStorage.removeItem(K_MID_HALF); cbs.forEach(c => c.checked = false); } else { const s = JSON.parse(localStorage.getItem(K_DATA) || '{}'); cbs.forEach(c => c.checked = !!s[c.id]); } update(false); }; cbs.forEach(c => c.addEventListener('change', () => { save(); update(true); })); setInterval(() => { if(localStorage.getItem(K_DATE) !== new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()) load(); }, 30000); load(); })();
 </script>
