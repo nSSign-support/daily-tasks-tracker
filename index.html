@@ -102,10 +102,6 @@
     display: none;
     padding-right: 15px;
   }
-  /* 最初から開いておくセクション用 */
-  .is-open {
-    display: block;
-  }
 
   .item { 
     background: #fff; display: flex; align-items: center; padding: 12px 15px; 
@@ -150,6 +146,7 @@
   <h2 id="title">投票アイテムをあつめよう！</h2>
   
   <div id="list">
+    <!-- 常時表示：コツコツ応援！きょうの推しごと -->
     <div class="section-title" style="cursor: default;">
       <div>
         コツコツ応援！きょうの推しごと
@@ -164,10 +161,11 @@
       <label class="item"><input type="checkbox" id="t5" class="cb cb-top"><span><small class="app-tag">tin</small>広告視聴💜 [２０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
     </div>
 
+    <!-- すだれ：そろそろ本腰…上乗せ！の推しごと -->
     <div class="accordion">
       <div class="section-title accordion-toggle" onclick="toggleSection('sec-honboshi', this)">
         <div>
-          そろそろ本腰…きょうの推しごと
+          そろそろ本腰…上乗せ！の推しごと
           <small>⏱️ 有効期限：60日 〜 90日</small>
         </div>
         <span class="toggle-icon">🔽 広げる</span>
@@ -179,14 +177,15 @@
         <label class="item"><input type="checkbox" id="t9" class="cb"><span><small class="app-tag">Higher</small>出席+広告視聴ボーナス🔴</span></label>
         <label class="item"><input type="checkbox" id="t10" class="cb"><span><small class="app-tag">Higher</small>ルーレット🔴 [３回]</span></label>
         <label class="item"><input type="checkbox" id="t11" class="cb"><span><small class="app-tag">Higher</small>はしご乗り🔴 [３回]</span></label>
-        <label class="item"><input type="checkbox" id="t12" class="cb"><span><small class="app-tag">Higher</small>広告視聴🔴 [５0回]<span class="note">※１０回ごとに５分インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t12" class="cb"><span><small class="app-tag">Higher</small>広告視聴🔴 [５０回]<span class="note">※１０回ごとに５分インターバル</span></span></label>
       </div>
     </div>
 
+    <!-- すだれ：決戦せまる！！限界突破🔥の推しごと -->
     <div class="accordion">
       <div class="section-title accordion-toggle" onclick="toggleSection('sec-kessen', this)">
         <div>
-          決戦せまる！！きょうの推しごと
+          決戦せまる！！限界突破🔥の推しごと
           <small>⏱️ 有効期限：30日以内</small>
         </div>
         <span class="toggle-icon">🔽 広げる</span>
@@ -199,10 +198,15 @@
     </div>
   </div>
 
+  <!-- 完全復活した有効期限一覧表のフッター -->
   <div class="footer">
-    <b>💡 カムバックが確定するまで</b>
-    <span class="indent">▶️ まずは簡単に貯められるものだけでもコツコツ自分のペースで</span>
-    <span class="indent">▶️ 消えちゃうアイテムはチャートや企画に活用を…</span>
+    <b>💡 有効期限 一覧表</b>
+    <span class="indent">・tin / LiNC ➔ 180日（年内期限）</span>
+    <span class="indent">・IDOL CHAMP ➔ ハートによって異なる（最大年内）</span>
+    <span class="indent">・mubeat ➔ 90日間（月末リセット）</span>
+    <span class="indent">・Higher ➔ 60日間</span>
+    <span class="indent">・Fancast / MUNIVERSE ➔ 30日間</span>
+    <span class="indent" style="margin-top: 8px; opacity: 0.8;">※消えちゃうアイテムはイベントや企画に活用を…！</span>
   </div>
 </div>
 
@@ -222,9 +226,9 @@ function toggleSection(id, element) {
 }
 
 (() => {
-  const K_DATA = 'V_LIGHT_ST_V5'; // すだれ式導入に伴い保存キーを新しく更新
-  const K_DATE = 'V_LIGHT_DT_V5';
-  const K_HALF = 'V_LIGHT_HF_V5'; 
+  const K_DATA = 'V_LIGHT_ST_V7'; // 一覧表復活に伴い保存キーを新しく更新
+  const K_DATE = 'V_LIGHT_DT_V7';
+  const K_HALF = 'V_LIGHT_HF_V7'; 
   const cbs = document.querySelectorAll('.cb');
   const box = document.getElementById('box');
   const title = document.getElementById('title');
