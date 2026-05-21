@@ -50,6 +50,12 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
   
+  /* すだれ（開閉アコーディオン）のスタイル */
+  .accordion {
+    margin-right: -15px;
+    margin-bottom: 8px;
+  }
+  
   .section-title { 
     font-size: 1rem; 
     font-weight: bold; 
@@ -60,8 +66,15 @@
     padding: 6px 12px; 
     background: linear-gradient(90deg, rgba(211, 47, 47, 0.45) 0%, rgba(211, 47, 47, 0) 90%);
     border-radius: 6px 0 0 6px;
-    margin-right: -15px;
     line-height: 1.3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .accordion-toggle .section-title {
+    margin: 15px 0 5px;
   }
   .section-title small {
     display: block;
@@ -69,6 +82,29 @@
     opacity: 0.9;
     font-weight: normal;
     margin-top: 2px;
+  }
+  .toggle-icon {
+    font-size: 0.75rem;
+    background: rgba(0,0,0,0.2);
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-right: 15px;
+    font-weight: bold;
+    text-shadow: none;
+    transition: background 0.2s;
+  }
+  .section-title:hover .toggle-icon {
+    background: rgba(0,0,0,0.35);
+  }
+
+  /* 初期状態で中身を隠す設定 */
+  .accordion-content {
+    display: none;
+    padding-right: 15px;
+  }
+  /* 最初から開いておくセクション用 */
+  .is-open {
+    display: block;
   }
 
   .item { 
@@ -85,7 +121,7 @@
   
   input[type="checkbox"] { width: 26px; height: 26px; margin-right: 12px; accent-color: var(--orange); flex-shrink: 0; }
   
-  .footer { margin-top: 15px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; line-height: 1.6; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+  .footer { margin-top: 25px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; line-height: 1.6; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
   .footer b { font-size: 0.8rem; display: block; margin-bottom: 4px; }
   .indent { font-size: 0.62rem; padding-left: 1.4em; text-indent: -1.4em; display: block; letter-spacing: -0.01em; opacity: 0.95; margin-top: 2px; }
 
@@ -114,38 +150,53 @@
   <h2 id="title">投票アイテムをあつめよう！</h2>
   
   <div id="list">
-    <!-- ① カムバ関係なくほぼ年中やるもの（180日〜年内期限） -->
-    <div class="section-title">
-      ① コツコツ応援！きょうの推しごと
-      <small>⏱️ 有効期限：180日 〜 年内期限</small>
+    <div class="section-title" style="cursor: default;">
+      <div>
+        コツコツ応援！きょうの推しごと
+        <small>⏱️ 有効期限：180日 〜 年内期限</small>
+      </div>
     </div>
-    <label class="item"><input type="checkbox" id="t1" class="cb cb-top"><span><small class="app-tag">LiNC</small>広告視聴💜 [３０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
-    <label class="item"><input type="checkbox" id="t2" class="cb cb-top"><span><small class="app-tag">tin</small>広告視聴💜 [２０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
-    <label class="item"><input type="checkbox" id="t3" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>出席後広告視聴❤️</span></label>
-    <label class="item"><input type="checkbox" id="t4" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>ルーレット❤️</span></label>
-    <label class="item"><input type="checkbox" id="t5" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>クイズ💙 <span class="note">（５日連続満点❤️）</span></span></label>
+    <div class="always-content">
+      <label class="item"><input type="checkbox" id="t1" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>出席後広告視聴❤️</span></label>
+      <label class="item"><input type="checkbox" id="t2" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>ルーレット❤️</span></label>
+      <label class="item"><input type="checkbox" id="t3" class="cb cb-top"><span><small class="app-tag">IDOL CHAMP</small>クイズ💙 <span class="note">（５日連続満点❤️）</span></span></label>
+      <label class="item"><input type="checkbox" id="t4" class="cb cb-top"><span><small class="app-tag">LiNC</small>広告視聴💜 [３０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
+      <label class="item"><input type="checkbox" id="t5" class="cb cb-top"><span><small class="app-tag">tin</small>広告視聴💜 [２０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
+    </div>
 
-    <!-- ② カムバ予想がついたら始めるもの（60〜90日有効） -->
-    <div class="section-title">
-      ② そろそろ本腰…きょうの推しごと
-      <small>⏱️ 有効期限：60日 〜 90日</small>
+    <div class="accordion">
+      <div class="section-title accordion-toggle" onclick="toggleSection('sec-honboshi', this)">
+        <div>
+          そろそろ本腰…きょうの推しごと
+          <small>⏱️ 有効期限：60日 〜 90日</small>
+        </div>
+        <span class="toggle-icon">🔽 広げる</span>
+      </div>
+      <div id="sec-honboshi" class="accordion-content">
+        <label class="item"><input type="checkbox" id="t6" class="cb"><span><small class="app-tag">mubeat</small>広告視聴💗 [１５回]<span class="note">※１回ごとに１０秒インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t7" class="cb"><span><small class="app-tag">mubeat</small>クイズに挑戦💗<span class="note">※１日１回は無料</span></span></label>
+        <label class="item"><input type="checkbox" id="t8" class="cb"><span><small class="app-tag">MUNIVERSE</small>広告視聴🟦 [２０回]<span class="note">※１回ごとに１分程度インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t9" class="cb"><span><small class="app-tag">Higher</small>出席+広告視聴ボーナス🔴</span></label>
+        <label class="item"><input type="checkbox" id="t10" class="cb"><span><small class="app-tag">Higher</small>ルーレット🔴 [３回]</span></label>
+        <label class="item"><input type="checkbox" id="t11" class="cb"><span><small class="app-tag">Higher</small>はしご乗り🔴 [３回]</span></label>
+        <label class="item"><input type="checkbox" id="t12" class="cb"><span><small class="app-tag">Higher</small>広告視聴🔴 [５0回]<span class="note">※１０回ごとに５分インターバル</span></span></label>
+      </div>
     </div>
-    <label class="item"><input type="checkbox" id="t6" class="cb"><span><small class="app-tag">mubeat</small>広告視聴💗 [１５回]<span class="note">※１回ごとに１０秒インターバル</span></span></label>
-    <label class="item"><input type="checkbox" id="t7" class="cb"><span><small class="app-tag">mubeat</small>クイズに挑戦💗<span class="note">※１日１回は無料</span></span></label>
-    <label class="item"><input type="checkbox" id="t8" class="cb"><span><small class="app-tag">MUNIVERSE</small>広告視聴🟦 [２０回]<span class="note">※１回ごとに１分程度インターバル</span></span></label>
-    <label class="item"><input type="checkbox" id="t9" class="cb"><span><small class="app-tag">Higher</small>出席+広告視聴ボーナス🔴</span></label>
-    <label class="item"><input type="checkbox" id="t10" class="cb"><span><small class="app-tag">Higher</small>ルーレット🔴 [３回]</span></label>
-    <label class="item"><input type="checkbox" id="t11" class="cb"><span><small class="app-tag">Higher</small>はしご乗り🔴 [３回]</span></label>
-    <label class="item"><input type="checkbox" id="t12" class="cb"><span><small class="app-tag">Higher</small>広告視聴🔴 [５０回]<span class="note">※１0回ごとに５分インターバル</span></span></label>
 
-    <!-- ③ カムバ発表があってから始めるもの（30日有効） -->
-    <div class="section-title">
-      ③ 決戦せまる！！きょうの推しごと
-      <small>⏱️ 有効期限：30日以内</small>
+    <div class="accordion">
+      <div class="section-title accordion-toggle" onclick="toggleSection('sec-kessen', this)">
+        <div>
+          決戦せまる！！きょうの推しごと
+          <small>⏱️ 有効期限：30日以内</small>
+        </div>
+        <span class="toggle-icon">🔽 広げる</span>
+      </div>
+      <div id="sec-kessen" class="accordion-content">
+        <label class="item"><input type="checkbox" id="t13" class="cb"><span><small class="app-tag">Fancast</small>チェックイン💙</span></label>
+        <label class="item"><input type="checkbox" id="t14" class="cb"><span><small class="app-tag">Fancast</small>広告視聴💙 [視聴ボタン３つ×２０回]<span class="note">※１回ごとに１０分インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t15" class="cb"><span><small class="app-tag">MUNIVERSE</small>出席⬜</span></label>
+      </div>
     </div>
-    <label class="item"><input type="checkbox" id="t13" class="cb"><span><small class="app-tag">Fancast</small>チェックイン💙</span></label>
-    <label class="item"><input type="checkbox" id="t14" class="cb"><span><small class="app-tag">Fancast</small>広告視聴💙 [視聴ボタン３つ×２０回]<span class="note">※１回ごとに１０分インターバル</span></span></label>
-    <label class="item"><input type="checkbox" id="t15" class="cb"><span><small class="app-tag">MUNIVERSE</small>出席⬜</span></label>
   </div>
 
   <div class="footer">
@@ -156,10 +207,24 @@
 </div>
 
 <script>
+// すだれの開閉コントロール用の関数
+function toggleSection(id, element) {
+  const content = document.getElementById(id);
+  const icon = element.querySelector('.toggle-icon');
+  
+  if (content.style.display === 'block') {
+    content.style.display = 'none';
+    icon.innerText = '🔽 広げる';
+  } else {
+    content.style.display = 'block';
+    icon.innerText = '🔼 閉じる';
+  }
+}
+
 (() => {
-  const K_DATA = 'V_LIGHT_ST_V2'; // バージョン変更に伴いキーを更新
-  const K_DATE = 'V_LIGHT_DT_V2';
-  const K_HALF = 'V_LIGHT_HF_V2'; 
+  const K_DATA = 'V_LIGHT_ST_V5'; // すだれ式導入に伴い保存キーを新しく更新
+  const K_DATE = 'V_LIGHT_DT_V5';
+  const K_HALF = 'V_LIGHT_HF_V5'; 
   const cbs = document.querySelectorAll('.cb');
   const box = document.getElementById('box');
   const title = document.getElementById('title');
@@ -199,7 +264,7 @@
       title.innerHTML = "投票アイテムをあつめよう！";
     }
 
-    // ①番のセクションが全部埋まった時のプチお祝い
+    // 「コツコツ応援！きょうの推しごと」が全部埋まった時のプチお祝い
     if (fire && topOk === topCbs.length && ok !== cbs.length) {
       if (localStorage.getItem(K_HALF) !== '1') {
         localStorage.setItem(K_HALF, '1');
