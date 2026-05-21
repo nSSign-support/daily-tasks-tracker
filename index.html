@@ -109,6 +109,15 @@
     background: rgba(0,0,0,0.35);
   }
 
+  /* 💡 追加：サブタイトル用のスタイル設定 */
+  .section-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.85;
+    font-weight: normal;
+    margin-bottom: 1px;
+  }
+
   /* 初期状態で中身を隠す設定 */
   .accordion-content {
     display: none;
@@ -175,7 +184,8 @@
     <div class="accordion">
       <div class="section-title accordion-toggle" onclick="toggleSection('sec-honboshi', this)">
         <div>
-          そろそろ本腰…上乗せ！の推しごと
+          <span class="section-subtitle">そろそろ本腰…</span>
+          上乗せ！の推しごと
           <small>⏱️ 有効期限：60日 〜 90日</small>
         </div>
         <span class="toggle-icon">🔽 広げる</span>
@@ -194,10 +204,11 @@
     <div class="accordion">
       <div class="section-title accordion-toggle" onclick="toggleSection('sec-kessen', this)">
         <div>
-          決戦せまる！限界突破🔥の推しごと
+          <span class="section-subtitle">決戦せまる！</span>
+          限界突破🔥の推しごと
           <small>⏱️ 有効期限：30日以内</small>
         </div>
-        <span class="toggle-icon">🔽 広げる</span>
+          <span class="toggle-icon">🔽 広げる</span>
       </div>
       <div id="sec-kessen" class="accordion-content">
         <label class="item"><input type="checkbox" id="t13" class="cb"><span><small class="app-tag">Fancast</small>チェックイン💙</span></label>
