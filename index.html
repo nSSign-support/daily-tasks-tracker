@@ -24,10 +24,13 @@
   .app-tag { color: var(--app-blue); font-size: 0.75rem; font-weight: bold; }
   .note { font-size: 11px; color: #888; font-weight: normal; margin-top: 4px; }
   input[type="checkbox"] { width: 26px; height: 26px; margin-right: 12px; accent-color: var(--orange); flex-shrink: 0; }
-  .footer { margin-top: 25px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-  .f-row { display: flex; align-items: flex-start; margin-top: 3px; }
+  
+  /* フッターデザイン調整 */
+  .footer { margin-top: 25px; padding: 15px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.78rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); line-height: 1.4; }
+  .f-row { display: flex; align-items: flex-start; margin-top: 6px; }
   .f-icon { width: 1.4em; flex-shrink: 0; }
   .f-text { flex: 1; }
+  
   .popup-reward { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 2.2rem; background: rgba(255, 255, 255, 0.95); padding: 15px 25px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 9999; pointer-events: none; opacity: 0; }
   .popup-reward.show { animation: pop-up 1.8s ease-out forwards; }
   @keyframes pop-up { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; } 15% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } 100% { opacity: 0; } }
@@ -70,11 +73,11 @@
   </div>
   <div class="footer">
     <b>💡 有効期限 一覧表</b>
-    <div class="f-row"><span class="f-icon">・</span><span class="f-text">IDOL CHAMP ➔ 💙月末まで</span></div>
-    <div class="f-row"><span class="f-icon"></span><span class="f-text">❤️90日（投票券にすると年末まで）</span></div>
+    <div class="f-row"><span class="f-icon">・</span><span class="f-text">IDOL CHAMP</span></div>
+    <div class="f-row" style="padding-left:1.4em;">➔ 💙月末まで　❤️90日（投票券にすると年末まで）</div>
     <div class="f-row"><span class="f-icon">・</span><span class="f-text">Fancast ➔ 💙30日（チェックイン・広告）</span></div>
     <div class="f-row"><span class="f-icon">・</span><span class="f-text">mubeat ➔ 💗90日（延長クーポンあり）</span></div>
-    <div class="f-row"><span class="f-icon">・</span><span class="f-text">MUNIVERSE ➔ ⬜(シルバー)30日 ／ 🟦(ブルー)60日</span></div>
+    <div class="f-row"><span class="f-icon">・</span><span class="f-text">MUNIVERSE ➔ ⬜30日 ／ 🟦60日</span></div>
     <div class="f-row"><span class="f-icon">・</span><span class="f-text">LiNC・tin ➔ 💜180日</span></div>
     <div class="f-row"><span class="f-icon">・</span><span class="f-text">Higher ➔ 🔴90日</span></div>
   </div>
