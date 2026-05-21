@@ -36,116 +36,65 @@
   #date { font-size: 0.9rem; font-weight: bold; color: #fff; margin-bottom: 8px; display: block; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
   
   h2 { 
-    font-size: 1.45rem; 
-    font-weight: 950; 
-    margin: 5px -15px 18px; 
-    color: var(--red); 
-    text-shadow: 2px 2px 0px #fff, 3px 3px 6px rgba(0,0,0,0.3); 
-    line-height: 1.2; 
-    letter-spacing: -0.02em; 
-    white-space: nowrap; 
-    
+    font-size: 1.45rem; font-weight: 950; margin: 5px -15px 18px; color: var(--red); 
+    text-shadow: 2px 2px 0px #fff, 3px 3px 6px rgba(0,0,0,0.3); line-height: 1.2; 
+    letter-spacing: -0.02em; white-space: nowrap; 
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.22) 15%, rgba(255,255,255,0.22) 85%, rgba(255,255,255,0) 100%);
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
   
-  /* すだれ（開閉アコーディオン）のスタイル */
-  .accordion {
-    margin-right: -15px;
-    margin-bottom: 8px;
-  }
+  .accordion { margin-right: -15px; margin-bottom: 8px; }
   
   .section-title { 
-    font-size: 1rem; 
-    font-weight: bold; 
-    color: #fff; 
-    margin: 22px 0 10px; 
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3); 
-    text-align: left; 
-    padding: 6px 12px; 
+    font-size: 1rem; font-weight: bold; color: #fff; margin: 22px 0 10px; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3); text-align: left; padding: 6px 12px; 
     background: linear-gradient(90deg, rgba(211, 47, 47, 0.45) 0%, rgba(211, 47, 47, 0) 90%);
-    border-radius: 6px 0 0 6px;
-    line-height: 1.3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
+    border-radius: 6px 0 0 6px; line-height: 1.3; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;
   }
-  .accordion-toggle .section-title {
-    margin: 15px 0 5px;
-  }
-  /* タイトル文字の幅を自動調整し、改行をブロック */
-  .section-title > div:first-child {
-    flex: 1;
-    min-width: 0;
-    padding-right: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .section-title small {
-    display: block;
-    font-size: 0.68rem;
-    opacity: 0.9;
-    font-weight: normal;
-    margin-top: 2px;
-  }
-  /* ボタン自体が絶対に改行されないように固定 */
-  .toggle-icon {
-    font-size: 0.75rem;
-    background: rgba(0,0,0,0.2);
-    padding: 4px 8px;
-    border-radius: 12px;
-    margin-right: 15px;
-    font-weight: bold;
-    text-shadow: none;
-    transition: background 0.2s;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-  .section-title:hover .toggle-icon {
-    background: rgba(0,0,0,0.35);
-  }
+  .accordion-toggle .section-title { margin: 15px 0 5px; }
+  
+  .section-title > div:first-child { flex: 1; min-width: 0; padding-right: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .section-title small { display: block; font-size: 0.68rem; opacity: 0.9; font-weight: normal; margin-top: 2px; }
+  
+  .toggle-icon { font-size: 0.75rem; background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 12px; margin-right: 15px; font-weight: bold; text-shadow: none; transition: background 0.2s; flex-shrink: 0; white-space: nowrap; }
+  .section-title:hover .toggle-icon { background: rgba(0,0,0,0.35); }
 
-  /* 💡 追加：見出し内のサブタイトル用の設定（スマホ対応） */
-  .section-subtitle {
-    display: block;
-    font-size: 0.75rem;
-    opacity: 0.85;
-    font-weight: normal;
-    margin-bottom: 1px;
-  }
+  .section-subtitle { display: block; font-size: 0.75rem; opacity: 0.85; font-weight: normal; margin-bottom: 1px; }
 
-  /* 初期状態で中身を隠す設定 */
-  .accordion-content {
-    display: none;
-    padding-right: 15px;
-  }
+  .accordion-content { display: none; padding-right: 15px; }
 
-  .item { 
-    background: #fff; display: flex; align-items: center; padding: 12px 15px; 
-    border-radius: 15px; margin-bottom: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    transition: 0.3s;
-  }
+  .item { background: #fff; display: flex; align-items: center; padding: 12px 15px; border-radius: 15px; margin-bottom: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); transition: 0.3s; }
   .item.is-completed { opacity: 0.4; transform: scale(0.95); background: #f8f8f8; }
-  
   .item span { font-size: 0.95rem; color: #333; font-weight: bold; flex-grow: 1; text-align: left; line-height: 1.3; display: flex; flex-direction: column; justify-content: center; }
+  
   .app-tag { color: var(--app-blue); font-size: 0.75rem; display: block; margin-bottom: 2px; font-weight: bold; }
-  
   .note { font-size: 11px !important; color: #888 !important; font-weight: normal !important; display: block; margin-top: 4px; }
-  
   input[type="checkbox"] { width: 26px; height: 26px; margin-right: 12px; accent-color: var(--orange); flex-shrink: 0; }
   
   .footer { margin-top: 25px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; line-height: 1.6; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
   .footer b { font-size: 0.8rem; display: block; margin-bottom: 4px; }
   .indent { font-size: 0.68rem; padding-left: 1.4em; text-indent: -1.4em; display: block; letter-spacing: -0.01em; opacity: 0.95; margin-top: 3px; }
+
+  /* ポップアップの強制非表示設定 */
+  .popup-reward {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+    font-size: 2.2rem; background: rgba(255, 255, 255, 0.95); padding: 15px 25px;
+    border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 9999; pointer-events: none; opacity: 0; white-space: nowrap;
+  }
+  .popup-reward.show { animation: pop-up 1.8s ease-out forwards; }
+  @keyframes pop-up {
+    0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+    15% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    25% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    80% { transform: translate(-50%, -70%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -90%) scale(0); opacity: 0; }
+  }
 </style>
 </head>
 <body>
 
-<div id="rewardBox" class="popup-reward">🎉 👏 ✨</div>
+<div id="rewardBox" class="popup-reward"></div>
 
 <div class="container" id="box">
   <span id="date"></span>
@@ -197,7 +146,7 @@
       </div>
       <div id="sec-kessen" class="accordion-content">
         <label class="item"><input type="checkbox" id="t13" class="cb"><span><small class="app-tag">Fancast</small>チェックイン💙</span></label>
-        <label class="item"><input type="checkbox" id="t14" class="cb"><span><small class="app-tag">Fancast</small>広告視聴💙 [視聴ボタン３つ×２０回]<span class="note">※１回ごとに１0分インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t14" class="cb"><span><small class="app-tag">Fancast</small>広告視聴💙 [視聴ボタン３つ×２０回]<span class="note">※１回ごとに１０分インターバル</span></span></label>
         <label class="item"><input type="checkbox" id="t15" class="cb"><span><small class="app-tag">MUNIVERSE</small>出席⬜</span></label>
       </div>
     </div>
@@ -216,29 +165,16 @@
 </div>
 
 <script>
-// すだれの開閉コントロール
 function toggleSection(id, element) {
   const content = document.getElementById(id);
   const icon = element.querySelector('.toggle-icon');
-  
-  if (content.style.display === 'block') {
-    content.style.display = 'none';
-    icon.innerText = '🔽 広げる';
-  } else {
-    content.style.display = 'block';
-    icon.innerText = '🔼 閉じる';
-  }
+  if (content.style.display === 'block') { content.style.display = 'none'; icon.innerText = '🔽 広げる'; } 
+  else { content.style.display = 'block'; icon.innerText = '🔼 閉じる'; }
 }
 
 (() => {
-  const K_DATA = 'V_LIGHT_ST_V11'; // 一覧表テキスト同期に伴いキー更新
-  const K_DATE = 'V_LIGHT_DT_V11';
-  const K_HALF = 'V_LIGHT_HF_V11'; 
-  const K_MID_HALF = 'V_LIGHT_MH_V11'; 
-  const cbs = document.querySelectorAll('.cb');
-  const box = document.getElementById('box');
-  const title = document.getElementById('title');
-  const rewardBox = document.getElementById('rewardBox');
+  const K_DATA = 'V_LIGHT_ST_V11', K_DATE = 'V_LIGHT_DT_V11', K_HALF = 'V_LIGHT_HF_V11', K_MID_HALF = 'V_LIGHT_MH_V11';
+  const cbs = document.querySelectorAll('.cb'), box = document.getElementById('box'), title = document.getElementById('title'), rewardBox = document.getElementById('rewardBox');
 
   const showEmojiReward = (text) => {
     rewardBox.innerText = text;
@@ -248,73 +184,44 @@ function toggleSection(id, element) {
   };
 
   const update = (fire) => {
-    let ok = 0;
-    let topOk = 0;
-    let midOk = 0;
-    const topCbs = document.querySelectorAll('.cb-top');
-    const midCbs = document.querySelectorAll('.cb-mid');
+    let ok = 0, topOk = 0, midOk = 0;
+    const topCbs = document.querySelectorAll('.cb-top'), midCbs = document.querySelectorAll('.cb-mid');
 
     cbs.forEach(c => {
       const p = c.closest('.item');
-      if(c.checked) { 
-        ok++; 
-        p.classList.add('is-completed'); 
-        if(c.classList.contains('cb-top')) topOk++;
-        if(c.classList.contains('cb-mid')) midOk++;
-      } else { 
-        p.classList.remove('is-completed'); 
-      }
+      if(c.checked) { ok++; p.classList.add('is-completed'); if(c.classList.contains('cb-top')) topOk++; if(c.classList.contains('cb-mid')) midOk++; }
+      else { p.classList.remove('is-completed'); }
     });
 
     if(ok === cbs.length) {
-      box.classList.add('all-completed');
-      title.style.color = '#fff';
+      box.classList.add('all-completed'); title.style.color = '#fff';
       title.style.textShadow = '2px 2px 0px var(--red), 3px 3px 6px rgba(0,0,0,0.4)';
       title.innerHTML = "✨ COMPLETE ✨ おつかれさま！";
     } else {
-      box.classList.remove('all-completed');
-      title.style.color = 'var(--red)';
+      box.classList.remove('all-completed'); title.style.color = 'var(--red)';
       title.style.textShadow = '2px 2px 0px #fff, 3px 3px 6px rgba(0,0,0,0.3)';
       title.innerHTML = "投票アイテムをあつめよう！";
     }
 
     if (fire && ok !== cbs.length) {
-      if (topOk === topCbs.length) {
-        if (localStorage.getItem(K_HALF) !== '1') {
-          localStorage.setItem(K_HALF, '1');
-          showEmojiReward('🎉 👏 ✨');
-        }
-      }
-      if (midOk === midCbs.length) {
-        if (localStorage.getItem(K_MID_HALF) !== '1') {
-          localStorage.setItem(K_MID_HALF, '1');
-          showEmojiReward('🎙 🕺 🔥');
-        }
-      }
+      if (topOk === topCbs.length && localStorage.getItem(K_HALF) !== '1') { localStorage.setItem(K_HALF, '1'); showEmojiReward('🎉 👏 ✨'); }
+      if (midOk === midCbs.length && localStorage.getItem(K_MID_HALF) !== '1') { localStorage.setItem(K_MID_HALF, '1'); showEmojiReward('🎙 🕺 🔥'); }
     }
-
     if (topOk < topCbs.length) localStorage.removeItem(K_HALF);
     if (midOk < midCbs.length) localStorage.removeItem(K_MID_HALF);
   };
 
   const save = () => {
-    const d = {};
-    cbs.forEach(c => d[c.id] = c.checked);
+    const d = {}; cbs.forEach(c => d[c.id] = c.checked);
     localStorage.setItem(K_DATA, JSON.stringify(d));
-    const now = new Date();
-    localStorage.setItem(K_DATE, now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate());
+    const now = new Date(); localStorage.setItem(K_DATE, now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate());
   };
 
   const load = () => {
-    const n = new Date();
-    const today = n.getFullYear()+'-'+(n.getMonth()+1)+'-'+n.getDate();
-    const targetDate = document.getElementById('date');
-    if(targetDate) targetDate.innerText = today.replace(/-/g, '/');
-
+    const n = new Date(), today = n.getFullYear()+'-'+(n.getMonth()+1)+'-'+n.getDate();
+    document.getElementById('date').innerText = today.replace(/-/g, '/');
     if(localStorage.getItem(K_DATE) !== today) {
-      localStorage.removeItem(K_DATA);
-      localStorage.removeItem(K_HALF);
-      localStorage.removeItem(K_MID_HALF);
+      localStorage.removeItem(K_DATA); localStorage.removeItem(K_HALF); localStorage.removeItem(K_MID_HALF);
       cbs.forEach(c => c.checked = false);
     } else {
       const s = JSON.parse(localStorage.getItem(K_DATA) || '{}');
@@ -324,16 +231,7 @@ function toggleSection(id, element) {
   };
 
   cbs.forEach(c => c.addEventListener('change', () => { save(); update(true); }));
-  
-  const checkDateReset = () => {
-    const n = new Date();
-    const today = n.getFullYear()+'-'+(n.getMonth()+1)+'-'+n.getDate();
-    if(localStorage.getItem(K_DATE) !== today) load();
-  };
-
-  window.addEventListener('focus', checkDateReset);
-  setInterval(checkDateReset, 30000); 
-
+  setInterval(() => { if(localStorage.getItem(K_DATE) !== new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()) load(); }, 30000); 
   load();
 })();
 </script>
