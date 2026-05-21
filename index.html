@@ -109,7 +109,7 @@
     background: rgba(0,0,0,0.35);
   }
 
-  /* 💡 追加：サブタイトル用のスタイル設定 */
+  /* 💡 追加：見出し内のサブタイトル用の設定（スマホ対応） */
   .section-subtitle {
     display: block;
     font-size: 0.75rem;
@@ -141,21 +141,6 @@
   .footer { margin-top: 25px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; line-height: 1.6; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
   .footer b { font-size: 0.8rem; display: block; margin-bottom: 4px; }
   .indent { font-size: 0.68rem; padding-left: 1.4em; text-indent: -1.4em; display: block; letter-spacing: -0.01em; opacity: 0.95; margin-top: 3px; }
-
-  .popup-reward {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
-    font-size: 2.2rem; background: rgba(255, 255, 255, 0.95); padding: 15px 25px;
-    border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    z-index: 9999; pointer-events: none; opacity: 0; white-space: nowrap;
-  }
-  .popup-reward.show { animation: pop-up 1.8s ease-out forwards; }
-  @keyframes pop-up {
-    0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
-    15% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-    25% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    80% { transform: translate(-50%, -70%) scale(1); opacity: 1; }
-    100% { transform: translate(-50%, -90%) scale(0.8); opacity: 0; }
-  }
 </style>
 </head>
 <body>
@@ -208,11 +193,11 @@
           限界突破🔥の推しごと
           <small>⏱️ 有効期限：30日以内</small>
         </div>
-          <span class="toggle-icon">🔽 広げる</span>
+        <span class="toggle-icon">🔽 広げる</span>
       </div>
       <div id="sec-kessen" class="accordion-content">
         <label class="item"><input type="checkbox" id="t13" class="cb"><span><small class="app-tag">Fancast</small>チェックイン💙</span></label>
-        <label class="item"><input type="checkbox" id="t14" class="cb"><span><small class="app-tag">Fancast</small>広告視聴💙 [視聴ボタン３つ×２０回]<span class="note">※１回ごとに１０分インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t14" class="cb"><span><small class="app-tag">Fancast</small>広告視聴💙 [視聴ボタン３つ×２０回]<span class="note">※１回ごとに１0分インターバル</span></span></label>
         <label class="item"><input type="checkbox" id="t15" class="cb"><span><small class="app-tag">MUNIVERSE</small>出席⬜</span></label>
       </div>
     </div>
@@ -220,7 +205,8 @@
 
   <div class="footer">
     <b>💡 有効期限 一覧表</b>
-    <span class="indent">・IDOL CHAMP ➔ 💙月末まで ／ ❤️90日</span>
+    <span class="indent">・IDOL CHAMP ➔ 💙月末まで</span>
+    <span class="indent" style="padding-left: 7.7em; text-indent: -6.3em;">／ ❤️90日（投票券にすると年末まで）</span>
     <span class="indent">・Fancast ➔ 💙30日（チェックイン・広告）</span>
     <span class="indent">・mubeat ➔ 💗90日（延長クーポンあり）</span>
     <span class="indent">・MUNIVERSE ➔ ⬜(シルバー)30日 ／ 🟦(ブルー)60日</span>
