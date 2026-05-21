@@ -171,13 +171,13 @@
         <span class="toggle-icon">🔽 広げる</span>
       </div>
       <div id="sec-honboshi" class="accordion-content">
-        <label class="item"><input type="checkbox" id="t6" class="cb"><span><small class="app-tag">mubeat</small>広告視聴💗 [１５回]<span class="note">※１回ごとに１０秒インターバル</span></span></label>
-        <label class="item"><input type="checkbox" id="t7" class="cb"><span><small class="app-tag">mubeat</small>クイズに挑戦💗<span class="note">※１日１回は無料</span></span></label>
-        <label class="item"><input type="checkbox" id="t8" class="cb"><span><small class="app-tag">MUNIVERSE</small>広告視聴🟦 [２０回]<span class="note">※１回ごとに１分程度インターバル</span></span></label>
-        <label class="item"><input type="checkbox" id="t9" class="cb"><span><small class="app-tag">Higher</small>出席+広告視聴ボーナス🔴</span></label>
-        <label class="item"><input type="checkbox" id="t10" class="cb"><span><small class="app-tag">Higher</small>ルーレット🔴 [３回]</span></label>
-        <label class="item"><input type="checkbox" id="t11" class="cb"><span><small class="app-tag">Higher</small>はしご乗り🔴 [３回]</span></label>
-        <label class="item"><input type="checkbox" id="t12" class="cb"><span><small class="app-tag">Higher</small>広告視聴🔴 [５０回]<span class="note">※１０回ごとに５分インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t6" class="cb cb-mid"><span><small class="app-tag">mubeat</small>広告視聴💗 [１５回]<span class="note">※１回ごとに１０秒インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t7" class="cb cb-mid"><span><small class="app-tag">mubeat</small>クイズに挑戦💗<span class="note">※１日１回は無料</span></span></label>
+        <label class="item"><input type="checkbox" id="t8" class="cb cb-mid"><span><small class="app-tag">MUNIVERSE</small>広告視聴🟦 [２０回]<span class="note">※１回ごとに１分程度インターバル</span></span></label>
+        <label class="item"><input type="checkbox" id="t9" class="cb cb-mid"><span><small class="app-tag">Higher</small>出席+広告視聴ボーナス🔴</span></label>
+        <label class="item"><input type="checkbox" id="t10" class="cb cb-mid"><span><small class="app-tag">Higher</small>ルーレット🔴 [３回]</span></label>
+        <label class="item"><input type="checkbox" id="t11" class="cb cb-mid"><span><small class="app-tag">Higher</small>はしご乗り🔴 [３回]</span></label>
+        <label class="item"><input type="checkbox" id="t12" class="cb cb-mid"><span><small class="app-tag">Higher</small>広告視聴🔴 [５０回]<span class="note">※１０回ごとに５分インターバル</span></span></label>
       </div>
     </div>
 
@@ -198,7 +198,7 @@
     </div>
   </div>
 
-  <!-- 完全復活した有効期限一覧表のフッター -->
+  <!-- 有効期限一覧表 -->
   <div class="footer">
     <b>💡 有効期限 一覧表</b>
     <span class="indent">・tin / LiNC ➔ 180日（年内期限）</span>
@@ -211,7 +211,7 @@
 </div>
 
 <script>
-// すだれの開閉コントロール用の関数
+// すだれの開閉コントロール
 function toggleSection(id, element) {
   const content = document.getElementById(id);
   const icon = element.querySelector('.toggle-icon');
@@ -226,15 +226,17 @@ function toggleSection(id, element) {
 }
 
 (() => {
-  const K_DATA = 'V_LIGHT_ST_V7'; // 一覧表復活に伴い保存キーを新しく更新
-  const K_DATE = 'V_LIGHT_DT_V7';
-  const K_HALF = 'V_LIGHT_HF_V7'; 
+  const K_DATA = 'V_LIGHT_ST_V9'; // ライブ仕様ご褒美に伴いキー更新
+  const K_DATE = 'V_LIGHT_DT_V9';
+  const K_HALF = 'V_LIGHT_HF_V9'; 
+  const K_MID_HALF = 'V_LIGHT_MH_V9'; 
   const cbs = document.querySelectorAll('.cb');
   const box = document.getElementById('box');
   const title = document.getElementById('title');
   const rewardBox = document.getElementById('rewardBox');
 
-  const showEmojiReward = () => {
+  const showEmojiReward = (text) => {
+    rewardBox.innerText = text;
     rewardBox.classList.remove('show');
     void rewardBox.offsetWidth; 
     rewardBox.classList.add('show');
@@ -243,7 +245,9 @@ function toggleSection(id, element) {
   const update = (fire) => {
     let ok = 0;
     let topOk = 0;
+    let midOk = 0;
     const topCbs = document.querySelectorAll('.cb-top');
+    const midCbs = document.querySelectorAll('.cb-mid');
 
     cbs.forEach(c => {
       const p = c.closest('.item');
@@ -251,6 +255,7 @@ function toggleSection(id, element) {
         ok++; 
         p.classList.add('is-completed'); 
         if(c.classList.contains('cb-top')) topOk++;
+        if(c.classList.contains('cb-mid')) midOk++;
       } else { 
         p.classList.remove('is-completed'); 
       }
@@ -268,16 +273,25 @@ function toggleSection(id, element) {
       title.innerHTML = "投票アイテムをあつめよう！";
     }
 
-    // 「コツコツ応援！きょうの推しごと」が全部埋まった時のプチお祝い
-    if (fire && topOk === topCbs.length && ok !== cbs.length) {
-      if (localStorage.getItem(K_HALF) !== '1') {
-        localStorage.setItem(K_HALF, '1');
-        showEmojiReward();
+    if (fire && ok !== cbs.length) {
+      // ①「コツコツ応援！」クリア時
+      if (topOk === topCbs.length) {
+        if (localStorage.getItem(K_HALF) !== '1') {
+          localStorage.setItem(K_HALF, '1');
+          showEmojiReward('🎉 👏 ✨');
+        }
+      }
+      // ②「そろそろ本腰…上乗せ！」クリア時（★限定ライブ仕様！）
+      if (midOk === midCbs.length) {
+        if (localStorage.getItem(K_MID_HALF) !== '1') {
+          localStorage.setItem(K_MID_HALF, '1');
+          showEmojiReward('🎙 🕺 🔥');
+        }
       }
     }
-    if (topOk < topCbs.length) {
-      localStorage.removeItem(K_HALF);
-    }
+
+    if (topOk < topCbs.length) localStorage.removeItem(K_HALF);
+    if (midOk < midCbs.length) localStorage.removeItem(K_MID_HALF);
   };
 
   const save = () => {
@@ -297,6 +311,7 @@ function toggleSection(id, element) {
     if(localStorage.getItem(K_DATE) !== today) {
       localStorage.removeItem(K_DATA);
       localStorage.removeItem(K_HALF);
+      localStorage.removeItem(K_MID_HALF);
       cbs.forEach(c => c.checked = false);
     } else {
       const s = JSON.parse(localStorage.getItem(K_DATA) || '{}');
