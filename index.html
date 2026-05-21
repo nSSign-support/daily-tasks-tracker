@@ -76,6 +76,15 @@
   .accordion-toggle .section-title {
     margin: 15px 0 5px;
   }
+  /* タイトル文字の幅を自動調整し、改行をブロック */
+  .section-title > div:first-child {
+    flex: 1;
+    min-width: 0;
+    padding-right: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .section-title small {
     display: block;
     font-size: 0.68rem;
@@ -83,6 +92,7 @@
     font-weight: normal;
     margin-top: 2px;
   }
+  /* ボタン自体が絶対に改行されないように固定 */
   .toggle-icon {
     font-size: 0.75rem;
     background: rgba(0,0,0,0.2);
@@ -92,6 +102,8 @@
     font-weight: bold;
     text-shadow: none;
     transition: background 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .section-title:hover .toggle-icon {
     background: rgba(0,0,0,0.35);
@@ -119,7 +131,7 @@
   
   .footer { margin-top: 25px; padding: 12px; background: rgba(0,0,0,0.15); border-radius: 12px; color: #fff; text-align: left; font-size: 0.8rem; line-height: 1.6; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
   .footer b { font-size: 0.8rem; display: block; margin-bottom: 4px; }
-  .indent { font-size: 0.62rem; padding-left: 1.4em; text-indent: -1.4em; display: block; letter-spacing: -0.01em; opacity: 0.95; margin-top: 2px; }
+  .indent { font-size: 0.68rem; padding-left: 1.4em; text-indent: -1.4em; display: block; letter-spacing: -0.01em; opacity: 0.95; margin-top: 3px; }
 
   .popup-reward {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
@@ -146,7 +158,6 @@
   <h2 id="title">投票アイテムをあつめよう！</h2>
   
   <div id="list">
-    <!-- 常時表示：コツコツ応援！きょうの推しごと -->
     <div class="section-title" style="cursor: default;">
       <div>
         コツコツ応援！きょうの推しごと
@@ -161,7 +172,6 @@
       <label class="item"><input type="checkbox" id="t5" class="cb cb-top"><span><small class="app-tag">tin</small>広告視聴💜 [２０回]<span class="note">※１回ごとに１分インターバル</span></span></label>
     </div>
 
-    <!-- すだれ：そろそろ本腰…上乗せ！の推しごと -->
     <div class="accordion">
       <div class="section-title accordion-toggle" onclick="toggleSection('sec-honboshi', this)">
         <div>
@@ -181,11 +191,10 @@
       </div>
     </div>
 
-    <!-- すだれ：決戦せまる！！限界突破🔥の推しごと -->
     <div class="accordion">
       <div class="section-title accordion-toggle" onclick="toggleSection('sec-kessen', this)">
         <div>
-          決戦せまる！！限界突破🔥の推しごと
+          決戦せまる！限界突破🔥の推しごと
           <small>⏱️ 有効期限：30日以内</small>
         </div>
         <span class="toggle-icon">🔽 広げる</span>
@@ -198,15 +207,14 @@
     </div>
   </div>
 
-  <!-- 有効期限一覧表 -->
   <div class="footer">
     <b>💡 有効期限 一覧表</b>
-    <span class="indent">・tin / LiNC ➔ 180日（年内期限）</span>
-    <span class="indent">・IDOL CHAMP ➔ ハートによって異なる（最大年内）</span>
-    <span class="indent">・mubeat ➔ 90日間（月末リセット）</span>
-    <span class="indent">・Higher ➔ 60日間</span>
-    <span class="indent">・Fancast / MUNIVERSE ➔ 30日間</span>
-    <span class="indent" style="margin-top: 8px; opacity: 0.8;">※消えちゃうアイテムはイベントや企画に活用を…！</span>
+    <span class="indent">・IDOL CHAMP ➔ 💙月末まで ／ ❤️90日</span>
+    <span class="indent">・Fancast ➔ 💙30日（チェックイン・広告）</span>
+    <span class="indent">・mubeat ➔ 💗90日（延長クーポンあり）</span>
+    <span class="indent">・MUNIVERSE ➔ ⬜(シルバー)30日 ／ 🟦(ブルー)60日</span>
+    <span class="indent">・LiNC・tin ➔ 💜180日</span>
+    <span class="indent">・Higher ➔ 🔴90日</span>
   </div>
 </div>
 
@@ -226,10 +234,10 @@ function toggleSection(id, element) {
 }
 
 (() => {
-  const K_DATA = 'V_LIGHT_ST_V9'; // ライブ仕様ご褒美に伴いキー更新
-  const K_DATE = 'V_LIGHT_DT_V9';
-  const K_HALF = 'V_LIGHT_HF_V9'; 
-  const K_MID_HALF = 'V_LIGHT_MH_V9'; 
+  const K_DATA = 'V_LIGHT_ST_V11'; // 一覧表テキスト同期に伴いキー更新
+  const K_DATE = 'V_LIGHT_DT_V11';
+  const K_HALF = 'V_LIGHT_HF_V11'; 
+  const K_MID_HALF = 'V_LIGHT_MH_V11'; 
   const cbs = document.querySelectorAll('.cb');
   const box = document.getElementById('box');
   const title = document.getElementById('title');
@@ -274,14 +282,12 @@ function toggleSection(id, element) {
     }
 
     if (fire && ok !== cbs.length) {
-      // ①「コツコツ応援！」クリア時
       if (topOk === topCbs.length) {
         if (localStorage.getItem(K_HALF) !== '1') {
           localStorage.setItem(K_HALF, '1');
           showEmojiReward('🎉 👏 ✨');
         }
       }
-      // ②「そろそろ本腰…上乗せ！」クリア時（★限定ライブ仕様！）
       if (midOk === midCbs.length) {
         if (localStorage.getItem(K_MID_HALF) !== '1') {
           localStorage.setItem(K_MID_HALF, '1');
